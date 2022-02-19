@@ -1,0 +1,18 @@
+version: v2
+name: Trivy
+slug: trivy
+type: code_format
+summary: A simple and comprehensive vulnerability/misconfiguration scanner for containers and other artifacts.
+description: |
+  A simple and comprehensive vulnerability/misconfiguration scanner for containers and other artifacts.
+subscription_level: 2
+memory: 512
+timeout: 300
+default_configuration:
+  installation:
+    org: false
+subscribed_events:
+  - pull_request.opened
+  - pull_request.reopened
+  - pull_request.synchronize
+  - check_run.rerequested
