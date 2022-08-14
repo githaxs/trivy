@@ -17,6 +17,11 @@ run_task() {
         fi
 
     else
-        trivy --quiet config --exit-code 1 .
+        echo '```'
+        trivy --cache-dir /tmp/trivy/ --quiet config --exit-code 1 .
+        status=$?
+        echo '```'
+
+        exit $status
     fi
 }

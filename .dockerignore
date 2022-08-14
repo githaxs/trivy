@@ -1,0 +1,5 @@
+README.md
+.pre-commit-config.yaml
+task_config.yaml
+test.bats
+.ghx-cli
