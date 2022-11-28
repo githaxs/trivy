@@ -1,18 +1,36 @@
-version: v2
 name: Trivy
 slug: trivy
-type: code_format
 summary: A simple and comprehensive vulnerability/misconfiguration scanner for containers and other artifacts.
 description: |
   A simple and comprehensive vulnerability/misconfiguration scanner for containers and other artifacts.
+capabilities:
+  - type: checkout
+  #- type: aws-assume-iam-role
+  - type: checkrun
+  #- type: main-branch-analysis
+  #- type: inject-settings
+runtime: bash
+show: all
+#parameters:
+  #- name: enable_aws_security_hub
+  #  description: Trivy will report security findings to AWS Security Hub if selected
+  #  type: boolean
+  #- name: aws_region
+  #  description: To report results to AWS Security Hub
+  #  type: string
+  #- name: aws_account_id
+  #  description: To report results to AWS Security Hub
+  #  type: string
 subscription_level: 2
 memory: 512
 timeout: 300
 default_configuration:
   installation:
     org: false
-subscribed_events:
-  - pull_request.opened
-  - pull_request.reopened
-  - pull_request.synchronize
-  - check_run.rerequested
+packages:
+  system:
+    - jq
+  custom:
+    - curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin v0.23.0
+  python:
+    - awscli
